@@ -1,5 +1,5 @@
-Warning: truncated output (original token count: 23123)
-Total output lines: 450
+Warning: truncated output (original token count: 24122)
+Total output lines: 476
 
 <!doctype html>
 <html lang="en">
@@ -17,16 +17,18 @@ Total output lines: 450
     }
     * { box-sizing:border-box }
     html { scroll-behavior:smooth }
-    body { margin:0; background:var(--cream); color:var(--ink); font:16px/1.55 ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif }
+    body { margin:0; background-color:var(--cream); background-image:linear-gradient(0deg,transparent 49%,#526b4d0a 50%,transparent 51%),linear-gradient(90deg,transparent 49%,#526b4d0a 50%,transparent 51%),linear-gradient(0deg,transparent 20%,#526b4d08 21%,transparent 22%),linear-gradient(90deg,transparent 20%,#526b4d08 21%,transparent 22%);background-size:48px 48px,48px 48px,144px 144px,144px 144px;color:var(--ink);font:16px/1.55 ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif }
     button { font:inherit; color:inherit }
     .top { background:var(--pine); color:#f9f3e7; padding:14px max(24px,calc((100vw - 1100px)/2)); display:flex; justify-content:space-between; align-items:center; font-size:12px; letter-spacing:.12em; text-transform:uppercase;border-bottom:1px solid #c69a5570 }
     .top strong { font-family:Georgia,serif; font-size:16px; letter-spacing:.17em }
     .top-credits { display:flex;flex-direction:column;align-items:flex-end;gap:2px;text-align:right }
     .hfp-credit { color:#d7b87a;font-size:10px;letter-spacing:.15em;font-weight:700;text-transform:none }
-    .hero { background:radial-gradient(ellipse at 18% 15%,#67745b7a 0%,transparent 35%),radial-gradient(ellipse at 74% 86%,#16271f9c 0%,transparent 44%),repeating-linear-gradient(118deg,#ffffff05 0px,#ffffff05 1px,transparent 1px,transparent 5px),linear-gradient(125deg,#1e3027 0%,#2e4538 56%,#46533f 100%); color:var(--paper); padding:64px 24px 58px; position:relative; overflow:hidden }
+    .hero { background:repeating-linear-gradient(0deg,transparent 0 47px,#cad5b00e 48px 50px,transparent 51px 96px),repeating-linear-gradient(90deg,transparent 0 47px,#cad5b00e 48px 50px,transparent 51px 96px),repeating-linear-gradient(0deg,transparent 0 143px,#a9bd9810 144px 151px,transparent 152px 288px),repeating-linear-gradient(90deg,transparent 0 143px,#a9bd9810 144px 151px,transparent 152px 288px),radial-gradient(ellipse at 18% 15%,#67745b7a 0%,transparent 35%),radial-gradient(ellipse at 74% 86%,#16271f9c 0%,transparent 44%),repeating-linear-gradient(118deg,#ffffff05 0px,#ffffff05 1px,transparent 1px,transparent 5px),linear-gradient(125deg,#1e3027 0%,#2e4538 56%,#46533f 100%); color:var(--paper); padding:64px 24px 58px; position:relative; overflow:hidden }
     .hero:before { content:"";position:absolute;inset:12px;border:1px solid #c69a5570;box-shadow:inset 0 0 0 1px #f3e7c10b;pointer-events:none }
     .hero:after { content:""; position:absolute; width:420px;height:420px;border:1px solid #eee6d322;border-radius:50%;right:-120px;top:-160px;box-shadow:0 0 0 35px #eee6d20b,0 0 0 72px #eee6d209 }
     .hero-inner,.wrap { max-width:1100px; margin:auto; position:relative; z-index:1 }
+    .hero-wildlife { position:absolute;z-index:0;right:max(18px,calc((100vw - 1100px)/2 + 12px));bottom:5px;width:clamp(175px,23vw,290px);height:auto;color:#ead9ac;opacity:.17;pointer-events:none;filter:drop-shadow(0 1px 0 #14251d) }
+    .hero-wildlife path,.hero-wildlife line,.hero-wildlife ellipse { vector-effect:non-scaling-stroke }
     .eyebrow { color:#d7b87a; font-size:11px; letter-spacing:.2em; text-transform:uppercase; font-weight:700 }
     h1,h2,h3,p { margin-top:0 }
     h1 { font:clamp(42px,7vw,74px)/.99 Georgia,"Times New Roman",serif; letter-spacing:-.035em; max-width:700px; margin:17px 0 20px }
@@ -51,7 +53,7 @@ Total output lines: 450
     .panel { display:none }
     .panel.active { display:block }
     .grid { display:grid;grid-template-columns:1.2fr .8fr;gap:18px }
-    .card { background:var(--paper);border:1px solid #c6b58e;border-radius:5px;padding:24px;box-shadow:inset 0 1px 0 #ffffffc2,0 18px 48px #20272114 }
+    .card { background:var(--paper);border:1px solid #bda97a;border-radius:5px;padding:24px;box-shadow:inset 0 1px 0 #ffffffc2,inset 0 0 0 4px #ded2b644,inset 0 0 0 5px #fffdf5a6,0 18px 48px #20272114 }
     .card h3 { font:25px/1.15 Georgia,serif;margin:8px 0 13px }
     .card p { color:#50584f }
     .label { font-size:10px;text-transform:uppercase;letter-spacing:.15em;color:var(--rust);font-weight:800 }
@@ -99,7 +101,11 @@ Total output lines: 450
     .notice { background:#f2e6d6;border:1px solid #dfc7a7;padding:12px 15px;border-radius:4px;color:#534638;font-size:12px;margin-top:13px }
     .story-intro { max-width:760px;color:var(--muted);margin:-7px 0 18px }
     .story-grid { display:grid;grid-template-columns:repeat(2,1fr);gap:14px }
-    .story-card { background:var(--paper);border:1px solid #c6b58e;border-radius:5px;padding:21px 23px;box-shadow:inset 0 1px 0 #ffffffc2,var(--shadow) }
+    #story { position:relative }
+    .story-bird { position:absolute;z-index:0;top:40px;right:5px;width:96px;height:auto;color:#69745c;opacity:.15;pointer-events:none }
+    #story > * { position:relative;z-index:1 }
+    #story > .story-bird { position:absolute;z-index:0 }
+    .story-card { background:var(--paper);border:1px solid #bda97a;border-radius:5px;padding:21px 23px;box-shadow:inset 0 1px 0 #ffffffc2,inset 0 0 0 4px #ded2b644,inset 0 0 0 5px #fffdf5a6,var(--shadow) }
     .story-card h3 { font:24px/1.12 Georgia,serif;margin:7px 0 11px }
     .story-card p,.story-card li { color:#50584f;font-size:14px }
     .story-card p:last-child,.story-card ul:last-child { margin-bottom:0 }
@@ -113,7 +119,7 @@ Total output lines: 450
     .trail-picker { display:flex;gap:8px;flex-wrap:wrap;margin:16px 0 12px }
     .trail-choice { border:1px solid #c6b58e;background:var(--paper);border-radius:3px;padding:10px 14px;font-weight:750;cursor:pointer }
     .trail-choice.active,.trail-choice:hover { background:var(--pine);border-color:var(--gold);color:var(--paper) }
-    .tour-shell { background:var(--paper);border:1px solid #c6b58e;border-radius:5px;padding:24px;box-shadow:inset 0 1px 0 #ffffffc2,var(--shadow) }
+    .tour-shell { background:var(--paper);border:1px solid #bda97a;border-radius:5px;padding:24px;box-shadow:inset 0 1px 0 #ffffffc2,inset 0 0 0 4px #ded2b644,inset 0 0 0 5px #fffdf5a6,var(--shadow) }
     .tour-progress-row { display:flex;justify-content:space-between;gap:12px;align-items:center;color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:.1em;font-weight:750 }
     .tour-progress { height:5px;background:#e4ddcf;border-radius:8px;overflow:hidden;margin:9px 0 20px }
     .tour-progress i { display:block;height:100%;background:var(--rust);transition:width .2s }
@@ -155,6 +161,8 @@ Total output lines: 450
     .basics-score { font-size:12px;color:var(--muted);margin-top:12px;font-weight:700 }
     @media(max-width:760px) {
       .hero { padding:48px 20px 44px }
+      .hero-wildlife { width:164px;right:5px;bottom:0;opacity:.12 }
+      .story-bird { top:88px;right:2px;width:62px;opacity:.12 }
       main { padding:22px 16px 50px }
       .top { padding:13px 18px }
       .grid { grid-template-columns:1fr }
@@ -177,6 +185,16 @@ Total output lines: 450
 <body>
   <div class="top"><strong>THE RIDGE</strong><div class="top-credits"><span>by Mill House · Highland, NY</span><span class="hfp-credit">* Powered by HFP</span></div></div>
   <header class="hero" id="top">
+    <svg class="hero-wildlife" viewBox="0 0 240 230" aria-hidden="true" focusable="false">
+      <g fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M93 24c-8-7-17-5-20 4l-2 10c-7 5-12 13-12 22 0 14 10 25 24 29 3 9 8 16 13 23-12 8-23 20-29 35-5 12-7 28-7 43 0 6 5 10 12 10h25c4 0 7-4 6-8l-5-24 9-27 12 29 2 22c0 5 4 8 9 8h22c7 0 10-5 7-10l-13-24-4-34c18-1 34-11 43-27 6-11 6-23 2-34-3-9-10-16-19-21-5-3-11-4-17-3-5-14-17-24-32-25l-8-1-4-10-11 10c-1-10-8-17-17-18z"/>
+        <path d="M74 38c-8 2-13 7-16 13 7 0 13 2 17 7m17-25c-2 10-1 20 4 29m-22 2c6 5 12 6 19 4m-15 7c6 4 13 5 20 3m-10-12 4 1m21-3 4-1m-10 12-2 2m-8 7c5 3 11 3 16 0m-13 9c6 4 13 4 19 0m-20 12c-8 6-14 14-19 23m37-26c-2 15-1 30 4 44m8-43c7 13 10 27 10 43m-42 1c10 5 20 6 31 3m-43 5c8 6 17 8 27 8m-22 9c9 4 17 5 25 4m-17-65c8 4 16 5 24 4m-28 10c8 4 16 5 24 4m41-52c9 7 15 18 16 29m-10 10c-6 7-14 11-23 12m-74 43 12-5m-10 13 14-5m-11 12 14-4m19-54 7-4m-4 12 8-4m-3 13 8-4"/>
+        <path d="M64 180c-12 7-19 15-21 25 11-4 20-5 31-3m85-17c15 4 24 11 29 21-13 0-24-2-34-8"/>
+        <path d="M115 163c3 6 8 9 14 8m-24 23c-5 4-7 9-6 15m30-15c4 3 6 8 6 15m32-78c10 6 17 14 19 25m-7-42c8 8 13 17 14 27"/>
+        <path d="M36 211c25-4 52-4 77 0m12 0c28-5 54-4 78 1" stroke-width=".8"/>
+      </g>
+      <g fill="currentColor"><circle cx="83" cy="53" r="1.6"/><path d="m59 61 9-2-4 6z"/><circle cx="104" cy="55" r="1.3"/></g>
+    </svg>
     <div class="hero-inner">
       <div class="eyebrow">The Reserve Shelf · Staff Field Notes</div>
       <h1>A fine bottle.<br>A better story.</h1>
@@ -248,6 +266,14 @@ Total output lines: 450
       </section>
 
       <section class="panel" id="story">
+        <svg class="story-bird" viewBox="0 0 150 125" aria-hidden="true" focusable="false">
+          <g fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M45 70c-7-10-9-21-4-31 4-8 12-12 21-11 4-8 10-12 19-11 8 1 13 6 15 13 10 1 17 7 19 17 2 9-2 18-10 24l14 21-31-9-17 4-19-4-12 7 5-20z"/>
+            <path d="M61 29c-1 9 2 17 9 23m-25-7c9-1 17 2 24 9m-17-19c2 6 6 10 11 13m11-19c7 5 11 12 11 20m-24 2c13-4 25-3 37 2m-40 4c12-3 25-2 37 3m-35 4c11-2 23 0 33 5m-34 3c9 0 17 3 25 7m-27-33c7 1 13 4 18 9m13-21c2 7 0 14-5 19m-8 20 1 18m8-17 1 19m-16-1 17 0m8-19c5 3 10 4 15 4m-93 26c24-5 60-5 99 0m-48-46 8 2m14-3 6-2"/>
+            <path d="M45 72 28 94l29-8m39-17 20 16" stroke-width="1"/>
+          </g>
+          <g fill="currentColor"><circle cx="78" cy="37" r="1.6"/><path d="m99 42 14 3-13 4z"/></g>
+        </svg>
         <div class="section-head"><div><div class="label">Guided tasting-room history · 10 short stops</div><h2>The longer story</h2></div><p>Pick a trail. Take ten small steps. Come back to the guest.</p></div>
         <p class="story-intro">Three little Compass routes through bourbon, American rye, and Scotch. Each stop is a short read; the ending has a three-question field check. Tap a number if you want to roam out of order.</p>
         <div class="trail-picker" role="group" aria-label="Choose a whiskey trail">
@@ -316,13 +342,7 @@ Total output lines: 450
       "Little Rest Cask Strength": {kind:"American single malt · Wassaic, New York", taste:"Cask-strength Little Rest releases vary by cask. The distillery’s current Pinot Noir Cask Strength is full-bodied, with cherry and coffee and a light honeyed finish.", make:"Malted-barley single malt from Tenmile Distillery. The menu omits the finishing cask and edition, which materially changes the flavor.", line:"“A cask-strength New York single malt—let me check the cask, because that’s where this one gets its character.”", source:"https://tenmile.distilleryspirits.com/product.aspx?item=LRW0525PNC", photo:"Photo the cask name and release on the front/back label; cask-strength is not a single fixed profile." },
       "Widow Jane Black Opal 20YR": {kind:"Blended straight bourbon · minimum 20 years", taste:"The producer describes a deep, plush profile of walnut, blackstrap molasses, crème brûlée, poached plum, burnt sage and brown butter, with a rich mouthfeel and long finish.", make:"A blend of long-aged straight bourbons finished in old-growth Japanese Mizunara oak. Black Opal has multiple editions; the 2026 release uses a longer Mizunara finish than the first release.", line:"“Long-aged bourbon with a Japanese-oak finish—dark fruit, walnut and molasses, with a savory edge.”", source:"https://heavenhill.com/news-and-notes/new-york-exclusive-widow-jane-releases-borough-blend-2026-91-proof-love-letter-to-nyc-selected-by-bartenders-from-across-nycs-five-boroughs/", photo:"Photo the edition/year: Black Opal’s finishing time and exact notes vary by release." },
       "E.H. Taylor Rye": {kind:"Kentucky straight rye · Buffalo Trace", taste:"The producer’s rye notes lead with dried fruit, black pepper and fresh dill, followed by sweet, herbal rye character and a long, warm spice finish.", make:"Straight rye whiskey from Buffalo Trace Distillery; this is distinct from the E.H. Taylor bourbons.", line:"“A classic rye lane: dried fruit and black pepper, with a fresh herbal note.”", source:"https://www.buffalotracedistillery.com/our-brands/e-h-taylor-jr/e-h-taylor-jr-straight-rye/" },
-      "Redwood Empire Devils Tower Rye": {kind:"Menu name needs checking · likely high-rye bourbon", taste:"Redwood Empire’s Devil’s Tower is sold as a high-rye bourbon, not a straight rye. Its current producer profile lists hay, licorice, eucalyptus and lingonberry, then grapefruit pith, cardamom, mint and tobacco.", make:"The standard Devil’s Tower mash bill is corn-forward with 38% rye, plus malted barley and wheat. That rye content brings spice, but legally and stylistically it is bourbon.", line:"“Despite the menu shorthand, Devil’s Tower is a high-rye bourbon—spicy, minty and a little citrusy.”", source:"https://redwoodempirewhiskey.com/whiskey/devils-tower-high-rye-bourbon-whiskey/", photo:"Urgent: photo the label and batch. Producer calls it High Rye Bourbon; the menu calls it Rye, and batch profiles differ." },
-      "Sagamore Rye 10YR": {kind:"Maryland straight rye · Reserve Series", taste:"A mature rye that balances dessert-like honey and crème brûlée with white-pepper rye spice, backed by oak and fruit. The distillery describes it as a carefully matured and blended 10-year-old straight rye.", make:"Sagamore Spirit is based in Baltimore, Maryland. Age and blending soften the grain’s spice while keeping a dry, peppery edge.", line:"“Ten years of Maryland rye: rich honey and oak up front, with rye pepper on the back end.”", source:"https://shop.sagamorespirit.com/products/reserve-series-10-year-old-rye-whiskey" },
-      "Thomas H. Handy Rye": {kind:"Kentucky straight rye · barrel proof", taste:"Expect a full-throttle rye: toffee, fig cake and candied fruit alongside mint, cinnamon, clove, allspice and coconut. Its uncut, unfiltered proof changes by annual release.", make:"Buffalo Trace’s annual Antique Collection straight rye, bottled from the barrel without dilution or chill filtration.", line:"“A big, barrel-proof rye—dark fruit and toffee up front, then mint and baking spice.”", source:"https://www.buffalotracedistillery.com/our-brands/sazerac-rye-whiskey/thomas-h-handy-sazerac/" },
-      "Blanton’s": {kind:"Kentucky straight bourbon · single barrel", taste:"The distillery’s profile centers on nutmeg and spice, dry vanilla, honey, caramel and corn. Each bottle comes from an individual barrel, so small differences are part of the deal.", make:"A single-barrel bourbon from Buffalo Trace’s high-rye mash bill. The bottle’s dump date and barrel information identify the specific selection.", line:"“A single-barrel classic: vanilla, caramel and spice, with its own little barrel-to-barrel signature.”", source:"https://www.buffalotracedistillery.com/our-brands/blantons-single-barrel/blantons-original-single-barrel/" },
-      "Blanton’s Straight From Barrel": {kind:"Kentucky straight bourbon · barrel proof single barrel", taste:"The producer lists dark chocolate, caramel, walnut and hazelnut on the nose, then warm vanilla, oak and toasted nuts. Proof and subtle character vary by barrel.", make:"Blanton’s single-barrel bourbon bottled at barrel strength, without proofing down to the standard bottling.", line:"“Blanton’s turned all the way up: barrel strength, with dark chocolate, toasted nuts and warm oak.”", source:"https://www.buffalotracedistillery.com/our-brands/blantons-single-barrel/blantons-straight-from-the-barrel/", photo:"Photo the barrel/proof details if you want batch-specific notes; each barrel differs." },
-      "Rip Van Winkle 12YR": {kind:"Wheated bourbon · Van Winkle Special Reserve", taste:"The official 12-year profile gives dried mango and cocoa on the nose, honey, oak and tobacco on the palate, and a balanced, dry finish. This is the 90.4-proof wheated bourbon called Van Winkle Special Reserve 12 Year by its producer.", make:"The menu’s 12-year entry appears in both flight and neat-pour sections, so it is one bottle listed twice. “Pappy 12” is common shorthand, but use the label’s formal name with guests.", line:"“A 12-year wheated bourbon with honey, cocoa and oak, finishing drier than the rich nose suggests.”", source:"https://www.buffalotracedistillery.com/our-brands/van-winkle/van-winkle-special-reserve-12-year/", photo:"Please confirm the front label says Van Winkle Special Reserve 12 Year; menu shorthand is ambiguous." },
-      "Rip Van Winkle 15YR": {kind:"Wheated bourbon · Pappy Van Winkle 15 Year", taste:"The producer describes caramel corn and vanilla aromas, rich leather, oak and complex fruit on the palate, and a smooth finish with spice. Richer and more assertive than the 12-year Van Winkle.", make:"A 15-year wheated Kentucky straight bourbon, bottled at 107 proof. The producer’s official name is Pappy Van Winkle’s Family Reserve 15 Year.", line:"“A rich 15-…3123 tokens truncated…herry-seasoned oak.", make:"The Macallan sells different 12-year expressions; the label’s cask name determines the profile.", line:"“Macallan 12 has a couple of distinct cask styles—let me check the label so I steer you to the right one.”", source:"https://www.themacallan.com/en/single-malt-scotch-whisky/sherry-oak-12-years-old", photo:"Urgent: photo the cask-name on the front label—Sherry Oak and Double Cask are not interchangeable." },
+      "Redwood Empire Devils Tower Rye": {kind:"Menu name needs checking · likely high-rye bourbon", taste:"Redwood Empire’s Devil’s Tower is sold as a high-rye bourbon, not a straight rye. Its current producer profile lists hay, licorice, eucalyptus and lingonberry, then grapefruit pith, cardamom, mint and tobacco.", make:"The standard Devil’s Tower mash bill is corn-forward with 38% rye, plus malted barley and wheat. That rye content brings spice, but legally and stylistically it is bourbon.", line:"“Despite the menu shorthand, Devil’s Tower is a high-rye bourbon—spicy, minty and a little citrusy.”", source:"https://redwoodempirewhiskey.com/whiskey/devils-tower-high-rye-bourbon-whiskey/", photo:"Urgent: photo the label and batch. Pr…4122 tokens truncated…herry-seasoned oak.", make:"The Macallan sells different 12-year expressions; the label’s cask name determines the profile.", line:"“Macallan 12 has a couple of distinct cask styles—let me check the label so I steer you to the right one.”", source:"https://www.themacallan.com/en/single-malt-scotch-whisky/sherry-oak-12-years-old", photo:"Urgent: photo the cask-name on the front label—Sherry Oak and Double Cask are not interchangeable." },
       "Rare Character New York": {kind:"American whiskey · likely market-specific selection", taste:"Rare Character’s New York selections can be single barrels or blends with very different grains, ages and finishes. Without the label/barrel code, no one fixed flavor profile is safe to assign.", make:"Independent American whiskey bottler with rotating selections; “New York” may describe the market selection rather than a distillery or whiskey style.", line:"“This is a Rare Character New York selection; the barrel and proof tell the real story, so let me check the bottle.”", source:"https://www.rarecharacterwhiskey.com/single-barrel-series", photo:"Urgent: photo front and back label, including barrel/batch ID, mashbill, proof and age." },
       "Stagg Jr": {kind:"Kentucky straight bourbon · formerly Stagg Jr.", taste:"Bold brown sugar and chocolate meet cherry, oak and pronounced rye spice. Stagg Jr. was renamed Stagg; batch proof and intensity change with each release.", make:"Uncut, unfiltered barrel-proof bourbon from Buffalo Trace. The older “Stagg Jr.” menu name may refer to any batch under the former label.", line:"“Big barrel-proof bourbon—dark sugar, chocolate and cherry, with a real rye-spice kick.”", source:"https://www.buffalotracedistillery.com/our-brands/george-t-stagg/stagg-bourbon/", photo:"Photo the exact label/batch and proof; “Stagg Jr.” is legacy naming and batches differ." },
       "Weller 12YR": {kind:"Kentucky straight wheated bourbon · 12 year", taste:"The producer lists lanolin, almond, creamed corn and toasted vanilla aromas, followed by layered, moderately sweet wheat character and a long oaky finish.", make:"A 90-proof, 12-year-old wheated bourbon from Buffalo Trace. Wheat replaces rye as the secondary grain, usually giving a softer spice impression.", line:"“Twelve-year wheated bourbon: toasted vanilla and almond, with a measured sweetness and long oak finish.”", source:"https://www.buffalotracedistillery.com/our-brands/w-l-weller/w-l-weller-12/" },
