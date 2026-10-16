@@ -97,6 +97,10 @@
     .match-tags { display:flex;flex-wrap:wrap;gap:5px;margin:0 0 9px }
     .match-tag { background:#e9e6da;color:#4b5546;border-radius:99px;padding:3px 8px;font-size:11px }
     .match-result p { color:#52594e;font-size:13px;margin:0 0 11px }
+    .match-actions .btn-quiet,.match-result .btn-quiet { color:var(--pine);border-color:#a99977;background:transparent }
+    .match-result .btn-quiet:hover,.match-actions .btn-quiet:hover { background:#f0ecdf }
+    .match-more { grid-column:1/-1;justify-self:start;background:var(--pine);color:var(--paper);border:1px solid var(--gold);padding:10px 14px;border-radius:3px;font-weight:700;cursor:pointer }
+    .match-more:hover { background:#394c3f }
     .match-empty { grid-column:1/-1;padding:16px;background:#eee8d9;border:1px solid var(--line);color:#4e554b }
     .list-tools { display:flex;gap:10px;align-items:center;margin:18px 0 12px;flex-wrap:wrap }
     .search { flex:1;min-width:200px;border:1px solid var(--line);background:var(--paper);padding:11px 12px;border-radius:3px }
@@ -246,7 +250,7 @@
       <nav class="tabs" aria-label="Training sections">
         <button class="tab active" data-panel="basics">01 · Whiskey, briefly</button>
         <button class="tab" data-panel="story">02 · The longer story</button>
-        <button class="tab" data-panel="bottles">03 · Match a guest</button>
+        <button class="tab" data-panel="bottles">03 · Match a Mood</button>
         <button class="tab" id="shelf-tab" data-panel="shelf">04 · Full reserve shelf</button>
       </nav>
 
@@ -324,8 +328,8 @@
       </section>
 
       <section class="panel" id="bottles">
-        <div class="section-head"><div><div class="label">A quick floor tool · built from this reserve shelf</div><h2>Match a guest</h2></div><p>Start with what they like. Let the bottle follow.</p></div>
-        <p class="match-intro">Choose a flavor clue or two to rank the closest pours. Use bottle style and 2 oz neat price to narrow the list. Then open the bottle note for the fuller story and a ready-to-use table line.</p>
+        <div class="section-head"><div><div class="label">One guide for the floor and the table</div><h2>Match a Mood</h2></div><p>Start with what sounds good. Let the bottle follow.</p></div>
+        <p class="match-intro">Choose a flavor clue or two to rank the closest pours. Use bottle style and 2 oz neat price to narrow the full 57-bottle shelf. Open any bottle note for its fuller story and a ready-to-use table line.</p>
         <div class="match-filters" id="match-filters">
           <div class="match-group"><fieldset><legend>What flavors sound good?</legend><div class="match-checks">
             <label class="match-check"><input type="checkbox" value="pepper">Pepper & baking spice</label>
@@ -341,7 +345,7 @@
           <div class="match-group"><label for="match-price"><h3>2 oz neat price</h3></label><select id="match-price"><option value="any">Any price</option><option value="25">Up to $25</option><option value="45">$26–$45</option><option value="46">$46 and up</option></select></div>
         </div>
         <div class="match-actions"><button class="btn btn-quiet" id="match-clear" type="button">Clear choices</button><span class="match-hint" id="match-summary" aria-live="polite">Pick a flavor, style, or price to see suggestions.</span></div>
-        <div class="label" style="margin-bottom:9px">Closest matches</div><div class="match-results" id="match-results" aria-live="polite"><div class="match-empty">Tell me what the guest enjoys and I’ll find a good place to start.</div></div>
+        <div class="label" style="margin-bottom:9px">Closest matches</div><div class="match-results" id="match-results" aria-live="polite"><div class="match-empty">Tell me what sounds good, or browse the complete reserve shelf.</div></div>
       </section>
 
       <section class="panel" id="shelf">
@@ -586,10 +590,11 @@ William L. Weller Barrel Proof|67`.split("\n").map(row=>{const [name,price]=row.
     const highProofNames=new Set(["Little Rest Cask Strength","Blanton’s Straight From Barrel","Thomas H. Handy Rye","Woodford Reserve Barrel Strength Rye","E.H. Taylor Barrel Proof","Stagg Jr","Weller Full Proof","George T. Stagg","William L. Weller Barrel Proof"]);
     const flavorRules={pepper:/pepper|spice|cinnamon|clove|cardamom|ginger|nutmeg/i,vanilla:/vanilla|caramel|toffee|honey|maple|brown sugar|molasses/i,fruit:/fruit|cherry|fig|plum|apple|pear|citrus|raisin|date|mango|berry|orange|grape|dried/i,smoke:/peat|smok(e|y)|tobacco/i,oak:/oak|tannin|leather|dry finish|dry,|dry\./i};
     const flavorLabels={pepper:"Pepper & baking spice",vanilla:"Vanilla & caramel",fruit:"Fruit & dessert",smoke:"Smoke & peat",oak:"Oak & dry finish"};
+    let showAllMatches=false,browseAllMatches=false;
     function renderMatches(){
       const selected=[...document.querySelectorAll('#match-filters input[type="checkbox"]:checked')].map(input=>input.value),price=document.getElementById("match-price").value;
       const flavors=selected.filter(key=>flavorRules[key]),styles=selected.filter(key=>["single","proof"].includes(key)),hasChoice=selected.length>0||price!=="any",results=document.getElementById("match-results"),summary=document.getElementById("match-summary");
-      if(!hasChoice){summary.textContent="Pick a flavor, style, or price to see suggestions.";results.innerHTML='<div class="match-empty">Tell me what the guest enjoys and I’ll find a good place to start.</div>';return}
+      if(!hasChoice&&!browseAllMatches){summary.textContent="Pick a flavor, style, or price—or browse the complete shelf.";results.innerHTML='<div class="match-empty">Tell me what sounds good, or <button type="button" class="match-more" id="browse-all-matches">browse all 57 bottles →</button></div>';document.getElementById("browse-all-matches").addEventListener("click",()=>{browseAllMatches=true;showAllMatches=true;renderMatches()});return}
       const candidates=uniqueProfiles.map(name=>{const b=profiles[name],text=[b.taste,b.make,b.line].join(" "),matched=flavors.filter(key=>flavorRules[key].test(text)),cost=menuPrices[name],single=singleBarrelNames.has(name),proof=highProofNames.has(name);return {name,b,cost,matched,single,proof,score:matched.length}}).filter(item=>{
         if(item.cost==null)return false;
         if(price==="25"&&item.cost>25)return false;
@@ -598,13 +603,19 @@ William L. Weller Barrel Proof|67`.split("\n").map(row=>{const [name,price]=row.
         if(styles.includes("single")&&!item.single)return false;
         if(styles.includes("proof")&&!item.proof)return false;
         return true;
-      }).sort((a,b)=>b.score-a.score||a.cost-b.cost||a.name.localeCompare(b.name)).slice(0,6);
-      summary.textContent=candidates.length?candidates.length+" closest shelf matches · 2 oz neat menu prices":"No bottles fit every choice. Clear a style or widen the price range.";
-      if(!candidates.length){results.innerHTML='<div class="match-empty">No bottle fits every choice. Try clearing one style or widening the price range; a bartender can also suggest a close cousin.</div>';return}
-      results.innerHTML=candidates.map(item=>{const tags=[...item.matched.map(key=>flavorLabels[key]),...(item.single?["Single barrel"]:[]),...(item.proof?["Higher proof"]:[])];return '<article class="match-result"><div class="match-result-head"><div><div class="label">'+escapeHtml(item.b.kind.split(" · ")[0])+'</div><h3>'+escapeHtml(item.name)+'</h3></div><span class="match-price">$'+item.cost+' <small>· 2 oz</small></span></div><div class="match-tags">'+(tags.length?tags.map(tag=>'<span class="match-tag">'+escapeHtml(tag)+'</span>').join(""):'<span class="match-tag">Shelf pick</span>')+'</div><p>'+escapeHtml(item.b.line.replace(/[“”]/g,""))+'</p><button type="button" class="btn btn-quiet open-match-note" data-bottle="'+escapeHtml(item.name)+'">Open bottle note →</button></article>'}).join("");
+      }).sort((a,b)=>b.score-a.score||a.cost-b.cost||a.name.localeCompare(b.name));
+      const visible=showAllMatches?candidates:candidates.slice(0,6),total=candidates.length;
+      summary.textContent=total?(total>visible.length?total+" bottles fit · showing the 6 closest · 2 oz neat menu prices":(browseAllMatches?"All ":"")+total+" shelf matches · 2 oz neat menu prices"):"No bottles fit every choice. Clear a style or widen the price range.";
+      if(!total){results.innerHTML='<div class="match-empty">No bottle fits every choice. Try clearing one style or widening the price range; a bartender can also suggest a close cousin.</div>';return}
+      const cards=visible.map(item=>{const tags=[...item.matched.map(key=>flavorLabels[key]),...(item.single?["Single barrel"]:[]),...(item.proof?["Higher proof"]:[])];return '<article class="match-result"><div class="match-result-head"><div><div class="label">'+escapeHtml(item.b.kind.split(" · ")[0])+'</div><h3>'+escapeHtml(item.name)+'</h3></div><span class="match-price">$'+item.cost+' <small>· 2 oz</small></span></div><div class="match-tags">'+(tags.length?tags.map(tag=>'<span class="match-tag">'+escapeHtml(tag)+'</span>').join(""):'<span class="match-tag">Shelf pick</span>')+'</div><p>'+escapeHtml(item.b.line.replace(/[“”]/g,""))+'</p><button type="button" class="btn btn-quiet open-match-note" data-bottle="'+escapeHtml(item.name)+'">Open bottle note →</button></article>'}).join("");
+      const more=total>visible.length?'<button type="button" class="match-more" id="show-all-matches">Show all '+total+' matches ↓</button>':(showAllMatches&&total>6?'<button type="button" class="match-more" id="show-top-matches">Show the closest six ↑</button>':"");
+      results.innerHTML=cards+more;
+      document.getElementById("show-all-matches")?.addEventListener("click",()=>{showAllMatches=true;renderMatches()});
+      document.getElementById("show-top-matches")?.addEventListener("click",()=>{showAllMatches=false;browseAllMatches=false;renderMatches()});
       results.querySelectorAll(".open-match-note").forEach(button=>button.addEventListener("click",()=>{const name=button.dataset.bottle,search=document.getElementById("search");completed.add("bottles");updateProgress();document.getElementById("shelf-tab").click();search.value=name;document.getElementById("tier").value="";activeShelfRow=0;drawList();const open=document.querySelector(".shelf-row-wrap.open");if(open){open.querySelector(".row-detail").scrollIntoView({behavior:"smooth",block:"center"});open.querySelector(".row").focus({preventScroll:true})}}));
     }
-    document.querySelectorAll('#match-filters input').forEach(input=>input.addEventListener("change",renderMatches));document.getElementById("match-price").addEventListener("change",renderMatches);document.getElementById("match-clear").addEventListener("click",()=>{document.querySelectorAll('#match-filters input').forEach(input=>input.checked=false);document.getElementById("match-price").value="any";renderMatches()});
+    function resetMatchDisplay(){showAllMatches=false;browseAllMatches=false;renderMatches()}
+    document.querySelectorAll('#match-filters input').forEach(input=>input.addEventListener("change",resetMatchDisplay));document.getElementById("match-price").addEventListener("change",resetMatchDisplay);document.getElementById("match-clear").addEventListener("click",()=>{document.querySelectorAll('#match-filters input').forEach(input=>input.checked=false);document.getElementById("match-price").value="any";showAllMatches=false;browseAllMatches=false;renderMatches()});
     document.getElementById("search").addEventListener("input",()=>{activeShelfRow=-1;drawList()});document.getElementById("tier").addEventListener("change",()=>{activeShelfRow=-1;drawList()});drawList();updateProgress();
   </script>
 </body>
