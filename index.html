@@ -586,9 +586,9 @@ Johnnie Walker Blue|52
 Rip Van Winkle 10YR|54
 WhistlePig Beholden 21YR|63
 William L. Weller Barrel Proof|67`.split("\n").map(row=>{const [name,price]=row.split("|");return [name,Number(price)]}));
-    const singleBarrelNames=new Set(["Blanton’s","Blanton’s Straight From Barrel","Caribou Crossing","Garrison Brothers Single Barrel"]);
-    const highProofNames=new Set(["Little Rest Cask Strength","Blanton’s Straight From Barrel","Thomas H. Handy Rye","Woodford Reserve Barrel Strength Rye","E.H. Taylor Barrel Proof","Stagg Jr","Weller Full Proof","George T. Stagg","William L. Weller Barrel Proof"]);
-    const flavorRules={pepper:/pepper|spice|cinnamon|clove|cardamom|ginger|nutmeg/i,vanilla:/vanilla|caramel|toffee|honey|maple|brown sugar|molasses/i,fruit:/fruit|cherry|fig|plum|apple|pear|citrus|raisin|date|mango|berry|orange|grape|dried/i,smoke:/peat|smok(e|y)|tobacco/i,oak:/oak|tannin|leather|dry finish|dry,|dry\./i};
+    const singleBarrelNames=new Set(["Blanton’s","Blanton’s Straight From Barrel","Caribou Crossing","Elmer T. Lee Sour Mash","Garrison Brothers Single Barrel"]);
+    const highProofNames=new Set(["Little Rest Cask Strength","Blanton’s Straight From Barrel","Thomas H. Handy Rye","Woodford Reserve Barrel Strength Rye","E.H. Taylor Barrel Proof","Stagg Jr","Weller Full Proof","George T. Stagg","William L. Weller Barrel Proof","Old Carter Straight Rye","Russell’s Reserve 13YR"]);
+    const flavorRules={pepper:/pepper|spice|cinnamon|clove|cardamom|ginger|nutmeg/i,vanilla:/vanilla|caramel|toffee|honey|maple|brown sugar|molasses/i,fruit:/fruit|cherry|fig|plum|apple|pear|citrus|raisin|date|mango|berry|orange|grape|dried fruit/i,smoke:/peat|smok(e|y)/i,oak:/oak|tannin|leather|dry finish|dry,|dry\./i};
     const flavorLabels={pepper:"Pepper & baking spice",vanilla:"Vanilla & caramel",fruit:"Fruit & dessert",smoke:"Smoke & peat",oak:"Oak & dry finish"};
     let showAllMatches=false,browseAllMatches=false;
     function renderMatches(){
