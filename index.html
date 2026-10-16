@@ -595,8 +595,9 @@ William L. Weller Barrel Proof|67`.split("\n").map(row=>{const [name,price]=row.
       const selected=[...document.querySelectorAll('#match-filters input[type="checkbox"]:checked')].map(input=>input.value),price=document.getElementById("match-price").value;
       const flavors=selected.filter(key=>flavorRules[key]),styles=selected.filter(key=>["single","proof"].includes(key)),hasChoice=selected.length>0||price!=="any",results=document.getElementById("match-results"),summary=document.getElementById("match-summary");
       if(!hasChoice&&!browseAllMatches){summary.textContent="Pick a flavor, style, or price—or browse the complete shelf.";results.innerHTML='<div class="match-empty">Tell me what sounds good, or <button type="button" class="match-more" id="browse-all-matches">browse all 57 bottles →</button></div>';document.getElementById("browse-all-matches").addEventListener("click",()=>{browseAllMatches=true;showAllMatches=true;renderMatches()});return}
-      const candidates=uniqueProfiles.map(name=>{const b=profiles[name],text=[b.taste,b.make,b.line].join(" "),matched=flavors.filter(key=>flavorRules[key].test(text)),cost=menuPrices[name],single=singleBarrelNames.has(name),proof=highProofNames.has(name);return {name,b,cost,matched,single,proof,score:matched.length}}).filter(item=>{
+      const candidates=uniqueProfiles.map(name=>{const b=profiles[name],text=[b.taste,b.line].join(" "),matched=flavors.filter(key=>flavorRules[key].test(text)),cost=menuPrices[name],single=singleBarrelNames.has(name),proof=highProofNames.has(name);return {name,b,cost,matched,single,proof,score:matched.length}}).filter(item=>{
         if(item.cost==null)return false;
+        if(flavors.length&&item.matched.length===0)return false;
         if(price==="25"&&item.cost>25)return false;
         if(price==="45"&&(item.cost<26||item.cost>45))return false;
         if(price==="46"&&item.cost<46)return false;
