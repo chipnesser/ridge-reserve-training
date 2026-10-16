@@ -616,7 +616,7 @@ William L. Weller Barrel Proof|67`.split("\n").map(row=>{const [name,price]=row.
     }
     function resetMatchDisplay(){showAllMatches=false;browseAllMatches=false;renderMatches()}
     document.querySelectorAll('#match-filters input').forEach(input=>input.addEventListener("change",resetMatchDisplay));document.getElementById("match-price").addEventListener("change",resetMatchDisplay);document.getElementById("match-clear").addEventListener("click",()=>{document.querySelectorAll('#match-filters input').forEach(input=>input.checked=false);document.getElementById("match-price").value="any";showAllMatches=false;browseAllMatches=false;renderMatches()});
-    document.getElementById("search").addEventListener("input",()=>{activeShelfRow=-1;drawList()});document.getElementById("tier").addEventListener("change",()=>{activeShelfRow=-1;drawList()});drawList();updateProgress();
+    document.getElementById("search").addEventListener("input",()=>{activeShelfRow=-1;drawList()});document.getElementById("tier").addEventListener("change",()=>{activeShelfRow=-1;drawList()});drawList();renderMatches();updateProgress();
   </script>
 </body>
 </html>
