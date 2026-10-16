@@ -503,7 +503,7 @@
         if(activeShelfRow>=0)activeBottle=items[activeShelfRow].name;
         drawList();
         const open=list.querySelector('.shelf-row-wrap.open');
-        if(open)open.querySelector(".row").focus();
+        if(open){open.querySelector(".row").focus();open.querySelector(".row-detail").scrollIntoView({behavior:"smooth",block:"nearest"})}
         const start=document.getElementById("start-bottle-quiz");
         if(start)start.addEventListener("click",()=>startBottleQuiz(activeBottle));
       }));
