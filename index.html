@@ -78,6 +78,26 @@
     .detail h3 { font:25px Georgia,serif;margin:3px 0 8px }
     .detail p { margin:0;color:#465047;max-width:780px }
     .tagline { font-style:italic;color:#696e61!important;margin-top:8px!important }
+    .match-intro { margin:0 0 16px;color:var(--muted);max-width:760px }
+    .match-filters { display:grid;grid-template-columns:1.35fr 1fr .75fr;gap:12px;align-items:stretch }
+    .match-group { background:var(--paper);border:1px solid var(--line);border-radius:4px;padding:15px }
+    .match-group legend,.match-group h3 { font-size:12px;font-weight:700;line-height:1.3;letter-spacing:.1em;text-transform:uppercase;color:var(--rust);margin:0 0 10px }
+    .match-group fieldset { border:0;padding:0;margin:0 }
+    .match-checks { display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px }
+    .match-check { display:flex;align-items:flex-start;gap:8px;font-size:13px;line-height:1.35;color:#354037;cursor:pointer }
+    .match-check input { accent-color:#536c4c;margin:2px 0 0;flex:none }
+    .match-group select { width:100%;margin-top:5px }
+    .match-actions { display:flex;gap:10px;align-items:center;margin:13px 0 20px }
+    .match-hint { color:var(--muted);font-size:13px }
+    .match-results { display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px }
+    .match-result { background:var(--paper);border:1px solid var(--line);border-left:3px solid var(--gold);padding:15px 16px;border-radius:3px }
+    .match-result-head { display:flex;justify-content:space-between;align-items:start;gap:12px }
+    .match-result h3 { font:21px/1.15 Georgia,serif;margin:3px 0 8px }
+    .match-price { color:#58614f;white-space:nowrap;font-size:12px;font-weight:700 }
+    .match-tags { display:flex;flex-wrap:wrap;gap:5px;margin:0 0 9px }
+    .match-tag { background:#e9e6da;color:#4b5546;border-radius:99px;padding:3px 8px;font-size:11px }
+    .match-result p { color:#52594e;font-size:13px;margin:0 0 11px }
+    .match-empty { grid-column:1/-1;padding:16px;background:#eee8d9;border:1px solid var(--line);color:#4e554b }
     .list-tools { display:flex;gap:10px;align-items:center;margin:18px 0 12px;flex-wrap:wrap }
     .search { flex:1;min-width:200px;border:1px solid var(--line);background:var(--paper);padding:11px 12px;border-radius:3px }
     select { border:1px solid var(--line);background:var(--paper);padding:10px 12px;border-radius:3px }
@@ -196,6 +216,8 @@
       .tour-copy { min-height:0 }
       .bottle-list { grid-template-columns:1fr }
       .section-head { align-items:start;flex-direction:column }
+      .match-filters { grid-template-columns:1fr }
+      .match-results { grid-template-columns:1fr }
     }
     @media(max-width:420px) { .bottle-grid { grid-template-columns:1fr } .hero-actions { flex-wrap:wrap } }
   </style>
@@ -224,7 +246,7 @@
       <nav class="tabs" aria-label="Training sections">
         <button class="tab active" data-panel="basics">01 · Whiskey, briefly</button>
         <button class="tab" data-panel="story">02 · The longer story</button>
-        <button class="tab" data-panel="bottles">03 · Bottle notes</button>
+        <button class="tab" data-panel="bottles">03 · Match a guest</button>
         <button class="tab" id="shelf-tab" data-panel="shelf">04 · Full reserve shelf</button>
       </nav>
 
@@ -302,19 +324,24 @@
       </section>
 
       <section class="panel" id="bottles">
-        <div class="section-head"><div><div class="label">Short bottle notes · select a card</div><h2>Meet the shelf’s headliners</h2></div><p>What it is. What it tastes like. How to say it at the table.</p></div>
-        <div class="bottle-grid" id="featured"></div>
-        <div class="detail" id="detail" aria-live="polite"></div>
-        <article class="card quiz" style="margin-top:14px">
-          <div class="label">Quick check</div><h3>Which detail makes a whiskey “single barrel”?</h3>
-          <div class="answers" data-q="q2">
-            <button class="answer" data-correct="true">It comes from one selected barrel rather than a blend of barrels</button>
-            <button class="answer">It was distilled only once</button>
-            <button class="answer">It is always stronger than 100 proof</button>
-          </div>
-          <div class="feedback" id="q2-feedback" aria-live="polite"></div>
-          <div class="say">Service move: give a guest one sensory anchor, one useful distinction, then ask what they usually enjoy. That’s enough to make a recommendation feel personal.</div>
-        </article>
+        <div class="section-head"><div><div class="label">A quick floor tool · built from this reserve shelf</div><h2>Match a guest</h2></div><p>Start with what they like. Let the bottle follow.</p></div>
+        <p class="match-intro">Choose a flavor clue or two to rank the closest pours. Use bottle style and 2 oz neat price to narrow the list. Then open the bottle note for the fuller story and a ready-to-use table line.</p>
+        <div class="match-filters" id="match-filters">
+          <div class="match-group"><fieldset><legend>What flavors sound good?</legend><div class="match-checks">
+            <label class="match-check"><input type="checkbox" value="pepper">Pepper & baking spice</label>
+            <label class="match-check"><input type="checkbox" value="vanilla">Vanilla, caramel & toffee</label>
+            <label class="match-check"><input type="checkbox" value="fruit">Fruit & dessert notes</label>
+            <label class="match-check"><input type="checkbox" value="smoke">Smoke & peat</label>
+            <label class="match-check"><input type="checkbox" value="oak">Oak & a drier finish</label>
+          </div></fieldset></div>
+          <div class="match-group"><fieldset><legend>Any particular kind?</legend><div class="match-checks">
+            <label class="match-check"><input type="checkbox" value="single">Single barrel</label>
+            <label class="match-check"><input type="checkbox" value="proof">Higher proof / barrel strength</label>
+          </div></fieldset><p class="match-hint" style="margin:10px 0 0">Single barrel means one selected barrel; it’s a style clue, not a promise of a certain flavor.</p></div>
+          <div class="match-group"><label for="match-price"><h3>2 oz neat price</h3></label><select id="match-price"><option value="any">Any price</option><option value="25">Up to $25</option><option value="45">$26–$45</option><option value="46">$46 and up</option></select></div>
+        </div>
+        <div class="match-actions"><button class="btn btn-quiet" id="match-clear" type="button">Clear choices</button><span class="match-hint" id="match-summary" aria-live="polite">Pick a flavor, style, or price to see suggestions.</span></div>
+        <div class="label" style="margin-bottom:9px">Closest matches</div><div class="match-results" id="match-results" aria-live="polite"><div class="match-empty">Tell me what the guest enjoys and I’ll find a good place to start.</div></div>
       </section>
 
       <section class="panel" id="shelf">
@@ -337,13 +364,6 @@
       {tier:"Milestones", items:["E.H. Taylor Barrel Proof","E.H. Taylor Rye","Little Book","Old Fitzgerald 8YR","Old Carter Straight Rye","Orphan Barrel Fanged Pursuit","Orphan Barrel Indigo’s Hour","Weller Full Proof"]},
       {tier:"Special Occasions", items:["Blanton’s Straight From Barrel","Fercullen 21YR","Thomas H. Handy Rye","Hardin’s Creek 15YR","Middleton Very Rare","Penelope Rio","Rare Character Exceptional","Russell’s Reserve 13YR","Weller C.Y.P.B.","Wild Turkey Master’s Keep"]},
       {tier:"Only Live Once", items:["George T. Stagg","Glenfiddich 21YR Gran Reserva","Heaven Hill 18YR","Johnnie Walker Blue","Rip Van Winkle 10YR","Rip Van Winkle 12YR","Rip Van Winkle 15YR","WhistlePig Beholden 21YR","Widow Jane Black Opal 20YR","William L. Weller Barrel Proof"]}
-    ];
-    const featured = [
-      {name:"Eagle Rare 10YR",kind:"Bourbon · The Regular",facts:"A Kentucky straight bourbon aged for 10 years. Think oak, vanilla, and a steady, rounded bourbon profile; a useful place to start for someone who wants classic bourbon character without jumping straight to barrel proof.",line:"“If you like a classic, oak-forward bourbon, Eagle Rare is a nice 10-year pour to explore.”"},
-      {name:"Sagamore Rye 10YR",kind:"Rye · Rye + Mighty",facts:"A Maryland-made rye from Sagamore Spirit. The rye grain gives it a naturally spicier lane than many bourbons; longer aging brings in richer oak and baking-spice notes. Ask whether they want bright spice or a softer, rounder rye.",line:"“This is a good rye to try if you want spice with some age and weight behind it.”"},
-      {name:"Macallan 12YR",kind:"Scotch · Celebrations",facts:"The menu lists Macallan 12, but not the cask expression. Check the bottle before describing it: Macallan’s Sherry Oak and Double Cask 12-year bottlings use different cask programs. If the bottle is Sherry Oak, its official notes include dried fruit, ginger, and oak spice.",line:"“I can help you find the right Macallan 12; let me check which expression we have open so I describe it accurately.”"},
-      {name:"Blanton’s Single Barrel",kind:"Bourbon · The Regular",facts:"A Kentucky straight bourbon bottled from an individual barrel rather than blended across many barrels. That can make each barrel’s character distinct. A good chance to explain single-barrel selection without promising a specific flavor before checking the bottle.",line:"“Blanton’s is a single-barrel bourbon, so the appeal is that it has its own barrel character. Do you usually like a sweeter or oakier pour?”"},
-      {name:"Van Winkle Special Reserve 12YR",kind:"Wheated bourbon · menu: Rip Van Winkle 12YR",facts:"The producer’s current name for the 12-year expression is Van Winkle Special Reserve 12 Year. It is a 90.4-proof wheated bourbon; the official tasting notes describe dried mango, cocoa, honey, oak, and tobacco, with a balanced, dry finish. The menu appears to list this same bottle in both a flight lineup and the neat-pour list.",line:"“This is the 12-year Van Winkle Special Reserve—wheated bourbon, with a drier finish and notes of honey, cocoa, and oak. People often call it ‘Pappy 12,’ but I’d use the name on the bottle.”",source:"https://www.buffalotracedistillery.com/our-brands/van-winkle/van-winkle-special-reserve-12-year/"}
     ];
     const profiles = {
       "Little Rest Port Cask": {kind:"American single malt · Wassaic, New York", taste:"The distillery describes dried fig, cherry and banana on the nose, with chocolate-hazelnut richness, spiced fruit, vanilla fudge and molasses on the finish.", make:"Malted-barley single malt from Tenmile Distillery, matured in a port cask. A local New York pour with a lush, wine-cask accent.", line:"“A New York single malt with port-cask fruit—think cherry, fig and chocolate.”", source:"https://tenmile.distilleryspirits.com/product.aspx?item=LRW0324PT" },
@@ -410,9 +430,6 @@
     document.querySelectorAll(".tab").forEach(btn=>btn.addEventListener("click",()=>{document.querySelectorAll(".tab").forEach(t=>t.classList.toggle("active",t===btn));document.querySelectorAll(".panel").forEach(p=>p.classList.toggle("active",p.id===btn.dataset.panel));if(btn.dataset.panel==="shelf"){completed.add("shelf");updateProgress()}}));
     const basicsCorrect=new Set();
     document.querySelectorAll(".answers").forEach(group=>group.querySelectorAll(".answer").forEach(btn=>btn.addEventListener("click",()=>{if(group.dataset.done)return;group.dataset.done="true";let answers=[...group.querySelectorAll(".answer")],ok=btn.dataset.correct==="true";btn.classList.add(ok?"correct":"wrong");if(!ok)answers.find(a=>a.dataset.correct==="true")?.classList.add("correct");let fb=document.getElementById(group.dataset.q+"-feedback");fb.textContent=ok?"That’s it.":"Not quite—the best answer is highlighted.";if(group.dataset.completes==="basics"){if(ok)basicsCorrect.add(group.dataset.q);let score=document.getElementById("basics-score");score.textContent="Field check: "+basicsCorrect.size+" / 3 correct"+(basicsCorrect.size===3?" · clean work.":"");if(basicsCorrect.size===3){completed.add("basics");updateProgress()}}else if(ok){completed.add("bottles");updateProgress()}})));
-    document.getElementById("featured").innerHTML=featured.map((b,i)=>'<article class="bottle" tabindex="0" data-i="'+i+'"><div class="kind">'+b.kind+'</div><h3>'+b.name+'</h3><p>Flavor profile · how to describe it</p></article>').join("");
-    function showBottle(i){let b=featured[i],d=document.getElementById("detail");document.querySelectorAll("#featured .bottle").forEach((x,n)=>x.classList.toggle("selected",n===i));d.innerHTML='<div class="label">'+b.kind+'</div><h3>'+b.name+'</h3><p>'+b.facts+'</p><p class="tagline">'+b.line+'</p>'+(b.source?'<p style="font-size:12px;margin-top:10px">Producer reference: <a href="'+b.source+'" target="_blank" rel="noopener">Buffalo Trace Distillery</a></p>':'');d.classList.add("open")}
-    document.querySelectorAll("#featured .bottle").forEach(el=>{el.addEventListener("click",()=>showBottle(+el.dataset.i));el.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();showBottle(+el.dataset.i)}})});
     const trails={
       bourbon:{name:"Bourbon trail",steps:[
         ["Start with grain","Whiskey begins as grain cooked into a mash, fermented by yeast, and distilled. Bourbon starts with a corn-led recipe: at least 51% corn by law, with other grains adding their own accents."],
@@ -508,6 +525,86 @@
         if(start)start.addEventListener("click",()=>startBottleQuiz(activeBottle));
       }));
     }
+    const menuPrices=Object.fromEntries(`Little Rest Port Cask|24
+Widow Jane Borough Blend 10YR|19
+Little Rest Cask Strength|25
+Widow Jane Black Opal 20YR|63
+E.H. Taylor Rye|25
+Redwood Empire Devils Tower Rye|19
+Sagamore Rye 10YR|17
+Thomas H. Handy Rye|49
+Blanton’s|18
+Blanton’s Straight From Barrel|45
+Rip Van Winkle 12YR|63
+Rip Van Winkle 15YR|99
+Bardstown Silver Oak|20
+Ben Holladay Missouri Straight|16
+Bulleit Single Malt|16
+Caribou Crossing|16
+E.H. Taylor Small Batch|17
+Eagle Rare 10YR|18
+Elijah Craig Ryder Cup Edition|16
+Garrison Brothers Single Barrel|16
+Isaac Bowman Single Barrel|16
+Jack Daniel’s 10YR|19
+Maker’s Mark Star Hill Farms|19
+Old Fitzgerald 7YR|16
+Wild Turkey Jimmy Russell 70th|16
+Balvenie 12YR|22
+Elmer T. Lee Sour Mash|23
+Glenlivet 12YR|24
+Laphroaig 10YR|21
+Macallan 12YR|22
+Rare Character New York|22
+Stagg Jr|25
+Weller 12YR|25
+Woodford Reserve Barrel Strength Rye|23
+Yamazaki 12YR|22
+E.H. Taylor Barrel Proof|27
+Little Book|28
+Old Fitzgerald 8YR|26
+Old Carter Straight Rye|28
+Orphan Barrel Fanged Pursuit|27
+Orphan Barrel Indigo’s Hour|27
+Weller Full Proof|27
+Fercullen 21YR|37
+Hardin’s Creek 15YR|33
+Middleton Very Rare|30
+Penelope Rio|30
+Rare Character Exceptional|32
+Russell’s Reserve 13YR|36
+Weller C.Y.P.B.|45
+Wild Turkey Master’s Keep|33
+George T. Stagg|50
+Glenfiddich 21YR Gran Reserva|63
+Heaven Hill 18YR|65
+Johnnie Walker Blue|52
+Rip Van Winkle 10YR|54
+WhistlePig Beholden 21YR|63
+William L. Weller Barrel Proof|67`.split("\n").map(row=>{const [name,price]=row.split("|");return [name,Number(price)]}));
+    const singleBarrelNames=new Set(["Blanton’s","Blanton’s Straight From Barrel","Caribou Crossing","Garrison Brothers Single Barrel"]);
+    const highProofNames=new Set(["Little Rest Cask Strength","Blanton’s Straight From Barrel","Thomas H. Handy Rye","Woodford Reserve Barrel Strength Rye","E.H. Taylor Barrel Proof","Stagg Jr","Weller Full Proof","George T. Stagg","William L. Weller Barrel Proof"]);
+    const flavorRules={pepper:/pepper|spice|cinnamon|clove|cardamom|ginger|nutmeg/i,vanilla:/vanilla|caramel|toffee|honey|maple|brown sugar|molasses/i,fruit:/fruit|cherry|fig|plum|apple|pear|citrus|raisin|date|mango|berry|orange|grape|dried/i,smoke:/peat|smok(e|y)|tobacco/i,oak:/oak|tannin|leather|dry finish|dry,|dry\./i};
+    const flavorLabels={pepper:"Pepper & baking spice",vanilla:"Vanilla & caramel",fruit:"Fruit & dessert",smoke:"Smoke & peat",oak:"Oak & dry finish"};
+    function renderMatches(){
+      const selected=[...document.querySelectorAll('#match-filters input[type="checkbox"]:checked')].map(input=>input.value),price=document.getElementById("match-price").value;
+      const flavors=selected.filter(key=>flavorRules[key]),styles=selected.filter(key=>["single","proof"].includes(key)),hasChoice=selected.length>0||price!=="any",results=document.getElementById("match-results"),summary=document.getElementById("match-summary");
+      if(!hasChoice){summary.textContent="Pick a flavor, style, or price to see suggestions.";results.innerHTML='<div class="match-empty">Tell me what the guest enjoys and I’ll find a good place to start.</div>';return}
+      const candidates=uniqueProfiles.map(name=>{const b=profiles[name],text=[b.taste,b.make,b.line].join(" "),matched=flavors.filter(key=>flavorRules[key].test(text)),cost=menuPrices[name],single=singleBarrelNames.has(name),proof=highProofNames.has(name);return {name,b,cost,matched,single,proof,score:matched.length}}).filter(item=>{
+        if(item.cost==null)return false;
+        if(price==="25"&&item.cost>25)return false;
+        if(price==="45"&&(item.cost<26||item.cost>45))return false;
+        if(price==="46"&&item.cost<46)return false;
+        if(styles.includes("single")&&!item.single)return false;
+        if(styles.includes("proof")&&!item.proof)return false;
+        return true;
+      }).sort((a,b)=>b.score-a.score||a.cost-b.cost||a.name.localeCompare(b.name)).slice(0,6);
+      summary.textContent=candidates.length?candidates.length+" closest shelf matches · 2 oz neat menu prices":"No bottles fit every choice. Clear a style or widen the price range.";
+      if(!candidates.length){results.innerHTML='<div class="match-empty">No bottle fits every choice. Try clearing one style or widening the price range; a bartender can also suggest a close cousin.</div>';return}
+      results.innerHTML=candidates.map(item=>{const tags=[...item.matched.map(key=>flavorLabels[key]),...(item.single?["Single barrel"]:[]),...(item.proof?["Higher proof"]:[])];return '<article class="match-result"><div class="match-result-head"><div><div class="label">'+escapeHtml(item.b.kind.split(" · ")[0])+'</div><h3>'+escapeHtml(item.name)+'</h3></div><span class="match-price">$'+item.cost+' <small>· 2 oz</small></span></div><div class="match-tags">'+(tags.length?tags.map(tag=>'<span class="match-tag">'+escapeHtml(tag)+'</span>').join(""):'<span class="match-tag">Shelf pick</span>')+'</div><p>'+escapeHtml(item.b.line.replace(/[“”]/g,""))+'</p><button type="button" class="btn btn-quiet open-match-note" data-bottle="'+escapeHtml(item.name)+'">Open bottle note →</button></article>'}).join("");
+      results.querySelectorAll(".open-match-note").forEach(button=>button.addEventListener("click",()=>{const name=button.dataset.bottle,search=document.getElementById("search");completed.add("bottles");updateProgress();document.getElementById("shelf-tab").click();search.value=name;document.getElementById("tier").value="";activeShelfRow=0;drawList();const open=document.querySelector(".shelf-row-wrap.open");if(open){open.querySelector(".row-detail").scrollIntoView({behavior:"smooth",block:"center"});open.querySelector(".row").focus({preventScroll:true})}}));
+    }
+    document.querySelectorAll('#match-filters input').forEach(input=>input.addEventListener("change",renderMatches));document.getElementById("match-price").addEventListener("change",renderMatches);document.getElementById("match-clear").addEventListener("click",()=>{document.querySelectorAll('#match-filters input').forEach(input=>input.checked=false);document.getElementById("match-price").value="any";renderMatches()});
     document.getElementById("search").addEventListener("input",()=>{activeShelfRow=-1;drawList()});document.getElementById("tier").addEventListener("change",()=>{activeShelfRow=-1;drawList()});drawList();updateProgress();
   </script>
 </body>
